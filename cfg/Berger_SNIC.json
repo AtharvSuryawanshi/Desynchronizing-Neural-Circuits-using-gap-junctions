@@ -1,0 +1,48 @@
+{"ode":["dv/dt= (I_in+I_gap-Iion)/Cm",
+       "dh/dt= (hinf-h)/tauh",
+       "db/dt= (binf-b)/taub"],
+
+"init_states":{"v" : "-60 * mV",
+               "h" : "0.146",
+               "b" : "0.146"},
+
+"definitions":{"Iion":"Ina+Isb+Ile",
+               "Ile":"gl*(v-Ele)",
+               "Ina":"gna*(minf*minf*minf)*(1-h)*(v-Ena)",
+               "Isb":"gsb*(b*b*b*b)*(v-Ek)"},
+
+"functions":{"binf":"1/(1+(exp(-(cQ*zb)*(v-vb))))",
+             "hinf":"1/(1+(exp(-(cQ*zh)*(v-vh))))",
+             "minf":"1/(1+(exp(-(cQ*zm)*(v-vm))))",
+             "taub":"exp(-cQ*zb*gab*(v-vb))/(rb*(1+exp(-cQ*zb*(v-vb))))",
+             "tauh":"exp(-cQ*zh*gah*(v-vh))/(rh*(1+exp(-cQ*zh*(v-vh))))"},
+
+"parameters":{"gna": "431.2 *nsiemens",
+              "gsb":"215.6 *nsiemens",
+              "gl":"8.624 *nsiemens",
+              "zm":3,
+              "vm":"-33*mV",
+              "zh":5.2,
+              "vh":"-39.14*mV",
+              "rh":"0.2/ms",
+              "gah":0.38,
+              "zb":1.1056,
+              "vb":"-42.14*mV",
+              "rb":"0.2/ms",
+              "gab":0.38,
+              "Ek":"-72*mV",
+              "Ena":"55*mV",
+              "Ele":"-60*mV",
+              "Cm":"0.13*nF",
+              "I_in": "175*pA",
+              "I_gap":"0*nA",
+              "cQ":"0.0392/mV"},
+"bibkey": "berger_modeling_2015",
+"comments":
+          {
+            "from": "Berger and Crook (2015, Frontiers)",
+            "channels" : "Model includes DmNav29,",
+            "notes":"In the Berger et al. (2015) paper, the 3D model is used for figures 11 and 12."
+          }
+
+            }
